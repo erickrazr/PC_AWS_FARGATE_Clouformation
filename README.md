@@ -19,10 +19,9 @@ CONTAINER_NAME_TO_BE_PROTECTED = twistlock-fargate-task
 
 IMAGE_NAME_TO_BE_PROTECTED = matthewabq/twistlock-fargate-auto
 
-INSTALL_BUNDLE_STRING = On Prisma Conole choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders
+**INSTALL_BUNDLE_STRING** and **WS_CONSOLE_ADDRESS** = On Prisma Console choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders and Copy the Values
 
 ![installBundle](images/AppEmbedded.png)
 
-WS_CONSOLE_ADDRESS = 
 
 PATH_IMAGE_TWISTLOCK_LOCAL_REGISTRY =
