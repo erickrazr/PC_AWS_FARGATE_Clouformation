@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+###################################################################
+#    Created by Erick Ferreira (erickrazr)  - 27-May-2021         #
+#                                                                 #
+# This is an example of a Protected Fargate Task Definition       #
+#           with Prisma Cloud App Embedded Defender               #
+#               using AWS Cloudormation Yaml                      #
+#                                                                 #
+###################################################################
+
+Resources:
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ExecutionRoleArn: arn:aws:iam::415704696994:role/ecsTaskExecutionRole
+      ContainerDefinitions:
+        - 
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: "/ecs/PrismafargateDefender"
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: ecs
+#----------------- START Twistlock modifications -------------------************#
+          EntryPoint:
+          - /var/lib/twistlock/fargate/fargate_defender.sh    #########################################
+          - fargate                                           #      Do not modify those 3 lines      # 
+          - entrypoint                                        ######################################### 
+          - entry.sh              # <<<<< -------- Start replacing your EntryPoint from this line
+          LinuxParameters:
+            Capabilities:
+              Add:
+                - SYS_PTRACE
+          Environment:
+            - Name: DEFENDER_TYPE
+              Value: fargate
+            - Name: FARGATE_TASK
+              Value: <TASK_NAME_TO_BE_PROTECTED>
+            - Name: TW_CONTAINER_NAME
+              Value: <CONTAINER_NAME_TO_BE_PROTECTED>
+            - Name: TW_IMAGE_NAME
+              Value: '<IMAGE_NAME_TO_BE_PROTECTED>'
+          VolumesFrom:
+            - SourceContainer: TwistlockDefender
+              ReadOnly: false
+          DependsOn:
+            - ContainerName: TwistlockDefender
+              Condition: START
+          Essential: true
+#--------------------------# END Twistlock modifications ---------------------------#
+          Cpu: 0
+          Image: <IMAGE_TO_BE_PROTECTED_PRESENT_IN_THE_TASK>
+          Name: <TASK_NAME_TO_BE_PROTECTED>
+#-------------------------------- END CONTAINER TO BE PROTECTED -------------------------------#
+#--------------------------Fargate Sidecar -------------------------------# 
+        -
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: "/ecs/PrismafargateDefender"
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: ecs
+          EntryPoint:
+            - /usr/local/bin/defender
+            - fargate
+            - sidecar
+          Cpu: 0
+          Environment:
+            - Name: DEFENDER_TYPE
+              Value: fargate
+            - Name: FARGATE_TASK
+              Value: <TASK_TO_BE_PROTECTED>
+            - Name: INSTALL_BUNDLE
+              Value: <INSTALL_BUNDLE_STRING>
+            - Name: WS_ADDRESS
+              Value: '<WS_CONSOLE_ADDRESS>'
+          MountPoints: []
+          VolumesFrom: []
+          Image: <PATH_IMAGE_TWISTLOCK_LOCAL_REGISTRY>
+          Essential: true
+          Name: TwistlockDefender
+#--------------------------END Fargate Sidecar -------------------------------#
+      Memory: '1024'
+      Cpu: 512
+      Family: twistlock-fargate-task
+      Volumes: []
+      RequiresCompatibilities:
+        - FARGATE
+      NetworkMode: awsvpc
