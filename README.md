@@ -21,6 +21,8 @@ IMAGE_NAME_TO_BE_PROTECTED = matthewabq/twistlock-fargate-auto
 
 INSTALL_BUNDLE_STRING = On Prisma Conole choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders
 
+(images/AppEmbedded.png)
+
 WS_CONSOLE_ADDRESS = 
 
 PATH_IMAGE_TWISTLOCK_LOCAL_REGISTRY =
