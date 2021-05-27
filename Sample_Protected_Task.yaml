@@ -50,8 +50,8 @@ Resources:
           Essential: true
 #--------------------------# END Twistlock modifications ---------------------------#
           Cpu: 0
-          Image: <IMAGE_NAME_TO_BE_PROTECTED>
-          Name: <TASK_NAME_TO_BE_PROTECTED>
+          Image: matthewabq/twistlock-fargate-auto
+          Name: twistlock-fargate-task
 #-------------------------------- END CONTAINER TO BE PROTECTED -------------------------------#
 #--------------------------Fargate Sidecar -------------------------------# 
         -
@@ -70,7 +70,7 @@ Resources:
             - Name: DEFENDER_TYPE
               Value: fargate
             - Name: FARGATE_TASK
-              Value: <TASK_TO_BE_PROTECTED>
+              Value: <TASK_NAME_TO_BE_PROTECTED>
             - Name: INSTALL_BUNDLE
               Value: <INSTALL_BUNDLE_STRING>
             - Name: WS_ADDRESS
