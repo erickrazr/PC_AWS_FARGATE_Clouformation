@@ -50,7 +50,7 @@ Resources:
           Essential: true
 #--------------------------# END Twistlock modifications ---------------------------#
           Cpu: 0
-          Image: <IMAGE_TO_BE_PROTECTED_PRESENT_IN_THE_TASK>
+          Image: <IMAGE_NAME_TO_BE_PROTECTED>
           Name: <TASK_NAME_TO_BE_PROTECTED>
 #-------------------------------- END CONTAINER TO BE PROTECTED -------------------------------#
 #--------------------------Fargate Sidecar -------------------------------# 
