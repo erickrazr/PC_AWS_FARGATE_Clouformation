@@ -25,7 +25,7 @@ This repo has 2 files:
      
     matthewabq/twistlock-fargate-auto
 
-##### INSTALL_BUNDLE_STRING and WS_CONSOLE_ADDRESS
+#### INSTALL_BUNDLE_STRING and WS_CONSOLE_ADDRESS
 
     On Prisma Console choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders and Copy the Values
 
