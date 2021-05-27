@@ -19,7 +19,7 @@ CONTAINER_NAME_TO_BE_PROTECTED = twistlock-fargate-task
 IMAGE_NAME_TO_BE_PROTECTED = matthewabq/twistlock-fargate-auto
 
 INSTALL_BUNDLE_STRING = 
-In the Consoles choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders
+On Prisma Conole choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders
 
 WS_CONSOLE_ADDRESS = 
 
