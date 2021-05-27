@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+###################################################################
+#    Created by Erick Ferreira (erickrazr)  - 27-May-2021         #
+#                                                                 #
+# This is an example of a Protected Fargate Task Definition       #
+#           with Prisma Cloud App Embedded Defender               #
+#               using AWS Cloudormation Yaml                      #
+#                                                                 #
+###################################################################
+
+Resources:
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ExecutionRoleArn: arn:aws:iam::415704696994:role/ecsTaskExecutionRole
+      ContainerDefinitions:
+        - 
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: "/ecs/PrismafargateDefender"
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: ecs
+          EntryPoint:
+          - entry.sh
+          Cpu: 0
+          Image: 'matthewabq/twistlock-fargate-auto'
+          Name: twistlock-fargate-task
+      Memory: '1024'
+      Cpu: 512
+      Family: twistlock-fargate-task
+      Volumes: []
+      RequiresCompatibilities:
+        - FARGATE
+      NetworkMode: awsvpc
