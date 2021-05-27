@@ -1,6 +1,6 @@
 # PC_AWS_FARGATE_Clouformation
 
-##This repo provide a manual mockup on how to protect a fargate task on AWS Cloudformation Yaml.
+## This repo provide a manual mockup on how to protect a fargate task on AWS Cloudformation Yaml.
 
 
 ### Objective
