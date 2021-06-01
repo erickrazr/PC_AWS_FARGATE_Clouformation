@@ -1,6 +1,6 @@
-# PC_AWS_FARGATE_Clouformation
+# PC_AWS_FARGATE_CloudFormation
 
-## This repo provide a manual mockup on how to protect a fargate task on AWS Cloudformation Yaml.
+## This repo provide a manual mockup on how to protect a Fargate task defined in AWS CloudFormation YAML.
 
 
 ### Objective
@@ -10,7 +10,7 @@ This repo has 2 files:
  - Sample_Protected_Task.yaml
 
 
-### Parameters used in the Example (Should be customzide to your configuration)
+### Parameters used in the Example (Should be customized to your configuration)
 
 
 #### TASK_NAME_TO_BE_PROTECTED
@@ -27,7 +27,7 @@ This repo has 2 files:
 
 #### INSTALL_BUNDLE_STRING and WS_CONSOLE_ADDRESS
 
-    On Prisma Console choose Single Defender -> Defender Type -> Manual from Compute -> Manage -> Defenders -> Deploy -> Defenders and Copy the Values
+In the Prisma Cloud UI navigate to Compute | Manage | Defenders | Deploy. Choose Single Defender -> Defender Type -> Manual and copy the values as shown below.
 
    ![installBundle](images/AppEmbedded.png)
 
